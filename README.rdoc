@@ -7,6 +7,19 @@ To use the url_shortener gem you need a bit.ly login and Api key.
 * If you are registered at bit.ly then you already have it.
 * If you are not registered then you can get it easily by registering at bit.ly as they give an api key to every registered user
 
+==USAGE
+
+authorize = UrlShortener::Authorize.new 'bitlyapidemo', 'R_0da49e0a9118ff35f52f629d2d71bf07'
+client = UrlShortener::Client.new authorize
+results = client.shorten('http://www.yahoo.com')
+results['shortUrl']
+
+OR 
+
+results = client.shorten('http://www.yahoo.com', 'http://www.google.com', 'http://github.com')
+results.each {|result| puts result['shortUrl']}
+
+
 ==Tests
 
 Tests are written using RSpec and Cucumber. Integration tests use bit.ly demo login and api key credentials.
