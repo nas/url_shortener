@@ -15,4 +15,8 @@ module UrlShortener
   
   class NoResult < Error
   end
+  
+  class UrlShortener::IncompleteRequestParameter < Error
+    
+  end
 end
