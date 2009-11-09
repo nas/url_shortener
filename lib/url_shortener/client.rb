@@ -8,11 +8,14 @@ module UrlShortener
       validated?
     end
     
-    def shorten(*url)
+    # To shorten multiple URLs in a single API call, pass multiple urls
+    # e.g. shorten('http://www.google.com', 'http://www.bit.ly')
+    def shorten(*urls)
       # HTTParty accepts a hash for url parameters but if more than one parameters are passed
       # to bitly then the url needs to have longUrl parameter multiple times but we cant have
       # duplicate keys in a hash hence this solution
-      end_point_with_params = "#{end_point('shorten')}?longUrl=#{url.join('&longUrl=')}"
+      urls.collect!{|url| CGI.escape(url)}
+      end_point_with_params = "#{end_point('shorten')}?longUrl=#{urls.join('&longUrl=')}"
       interface(end_point_with_params).get['nodeKeyVal']
     end
     

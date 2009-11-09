@@ -89,21 +89,27 @@ describe UrlShortener::Client do
       @client = UrlShortener::Client.new(authorize)
       @interface = stub('UrlShortener::Interface', :get => {})
       @client.stub!(:interface).and_return(@interface)
+      @url = 'http://www.domain.com/path?params=value'
+    end
+    
+    it "should do the url escaping" do
+      CGI.should_receive(:escape).with(@url)
+      @client.shorten(@url)
     end
     
     it "should get the end point" do
       @client.should_receive(:end_point)
-      @client.shorten('a url')
+      @client.shorten(@url)
     end
     
     it "should use the interface to connect to bitly" do
       @client.should_receive(:interface).and_return(@interface)
-      @client.shorten('a url')
+      @client.shorten(@url)
     end
     
     it "should get the data using interface" do
       @interface.should_receive(:get)
-      @client.shorten('a url')
+      @client.shorten(@url)
     end
     
   end

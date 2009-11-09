@@ -3,6 +3,7 @@ $:.unshift(File.dirname(__FILE__)) unless
 
 require 'rubygems'
 require 'httparty'
+require 'cgi'
 require 'url_shortener/error.rb'
 require 'url_shortener/authorize.rb'
 require 'url_shortener/client.rb'
