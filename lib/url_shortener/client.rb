@@ -19,8 +19,18 @@ module UrlShortener
       interface(end_point_with_params).get['nodeKeyVal']
     end
     
-    def interface(end_point_with_params)
-      UrlShortener::Interface.new(end_point_with_params, :query => common_query_parameters)
+    # If a complex url need to be passed then use end_point_with_params else
+    # set first parameter to nil while invoking this method and
+    # pass rest_url option e.g.
+    #  interface(nil, {:rest_url => end_point('expand'), :another_key => 'value'})
+    def interface(end_point_with_params, options={})
+      if end_point_with_params.nil? && options[:rest_url].nil?
+        raise "You must provide either the endpoint as the first parameter or set the :rest_url options"
+      end
+      rest_url = end_point_with_params ? end_point_with_params : options[:rest_url]
+      options.delete(:rest_url)
+      params = common_query_parameters.merge!(options)
+      UrlShortener::Interface.new(rest_url, :query => params)
     end
     
     def common_query_parameters

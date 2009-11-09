@@ -114,21 +114,72 @@ describe UrlShortener::Client do
     
   end
   
+  describe "#expand" do
+   before(:each) do
+      authorize = UrlShortener::Authorize.new 'login', 'key'
+      @client = UrlShortener::Client.new(authorize)
+      @hash = 'qweWE' 
+      @short_url = 'http://bit.ly/wesSD'
+      @interface = stub('UrlShortener::Interface', :get => {})
+      @client.stub!(:interface).and_return(@interface)
+    end
+    
+    it "does something" do
+      
+      @client.expand(@short_url)
+    end
+  end
+  
   describe "#interface" do
     before(:each) do
       authorize = UrlShortener::Authorize.new 'login', 'key'
       @client = UrlShortener::Client.new(authorize)
-      @client.stub!(:common_query_parameters).and_return({})
+      @common_query_parameters = {}
+      @client.stub!(:common_query_parameters).and_return(@common_query_parameters)
+      @first_parameter = '/some/uri'
+      @url = '/a/url'
     end
     
     it "should initialize the interface object" do
       UrlShortener::Interface.should_receive(:new).with('/some/uri', :query => {})
-      @client.interface('/some/uri')
+      @client.interface(@first_parameter)
     end
     
     it "should get the common query parameters" do
       @client.should_receive(:common_query_parameters)
-      @client.interface('/some/uri')
+      @client.interface(@first_parameter)
+    end
+    
+    it "should use the rest_url key from the options if first_parameter is set to nil" do
+      UrlShortener::Interface.should_receive(:new).with('/a/url', :query => {})
+      @client.interface(nil, {:rest_url => @url})
+    end
+    
+    it "should use the first parameter if rest_url option as well as the first parameter is provided" do
+      UrlShortener::Interface.should_receive(:new).with('/some/uri', :query => {})
+      @client.interface(@first_parameter, {:rest_url => @url})
+    end
+    
+    it "should raise an error when neither the first parameter is set nor the rest_url options" do
+      lambda { @client.interface(nil, {}) }.should raise_error("You must provide either the endpoint as the first parameter or set the :rest_url options")
+    end
+    
+    it "should remove the rest_url key value from the options" do
+      options = {:rest_url => @url}
+      options.should_receive(:delete).with(:rest_url)
+      @client.interface(@first_parameter, options)
+    end
+    
+    it "should merge the rest of the options passed to the common_query_parameters" do
+      options = {:rest_url => @url, :tt => 'val'}
+      @common_query_parameters.should_receive(:merge!).with(options)
+      @client.interface(@first_parameter, options)
+    end
+    
+    it "should keys for the parameters that are passed in the options" do
+      options = {:rest_url => @url, :tt => 'val'}
+      UrlShortener::Interface.should_receive(:new).with('/a/url', :query => {:tt => 'val'})
+      @client.interface(nil, options)
     end
   end
   
