@@ -9,6 +9,8 @@ To use the url_shortener gem you need a bit.ly login and Api key.
 
 ==USAGE
 
+===To Shorten Urls
+
 * authorize = UrlShortener::Authorize.new 'your_bitly_login', 'your_bitly_api_key'
 
 * For example; authorize = UrlShortener::Authorize.new 'bitlyapidemo', 'R_0da49e0a9118ff35f52f629d2d71bf07'
@@ -18,6 +20,26 @@ To use the url_shortener gem you need a bit.ly login and Api key.
 * results = client.shorten('http://www.yahoo.com')
 
 * results['shortUrl']
+
+OR 
+
+* results = client.shorten('http://www.yahoo.com', 'http://www.google.com', 'http://github.com')
+
+* results.each {|result| puts result['shortUrl']}
+
+==To Expand Urls
+
+* authorize = UrlShortener::Authorize.new 'your_bitly_login', 'your_bitly_api_key'
+
+* client = UrlShortener::Client.new authorize
+
+* result = client.expand(:shortUrl => 'http://bit.ly/1RmnUT')
+
+OR
+
+* result = client.expand(:hash => '2bYgqR')
+
+* result['longUrl']
 
 OR 
 
