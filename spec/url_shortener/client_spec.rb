@@ -83,50 +83,82 @@ describe UrlShortener::Client do
     end
   end
   
-  describe "#shorten" do
+  describe "API actions" do
     before(:each) do
       authorize = UrlShortener::Authorize.new 'login', 'key'
       @client = UrlShortener::Client.new(authorize)
       @interface = stub('UrlShortener::Interface', :get => {})
       @client.stub!(:interface).and_return(@interface)
-      @url = 'http://www.domain.com/path?params=value'
     end
-    
-    it "should do the url escaping" do
-      CGI.should_receive(:escape).with(@url)
-      @client.shorten(@url)
+    describe "#shorten" do
+      before(:each) do
+        @url = 'http://www.domain.com/path?params=value'
+      end
+
+      it "should do the url escaping" do
+        CGI.should_receive(:escape).with(@url)
+        @client.shorten(@url)
+      end
+
+      it "should get the end point" do
+        @client.should_receive(:end_point)
+        @client.shorten(@url)
+      end
+
+      it "should use the interface to connect to bitly" do
+        @client.should_receive(:interface).and_return(@interface)
+        @client.shorten(@url)
+      end
+
+      it "should get the data using interface" do
+        @interface.should_receive(:get)
+        @client.shorten(@url)
+      end
+
     end
-    
-    it "should get the end point" do
-      @client.should_receive(:end_point)
-      @client.shorten(@url)
-    end
-    
-    it "should use the interface to connect to bitly" do
-      @client.should_receive(:interface).and_return(@interface)
-      @client.shorten(@url)
-    end
-    
-    it "should get the data using interface" do
-      @interface.should_receive(:get)
-      @client.shorten(@url)
-    end
-    
-  end
-  
-  describe "#expand" do
-   before(:each) do
-      authorize = UrlShortener::Authorize.new 'login', 'key'
-      @client = UrlShortener::Client.new(authorize)
-      @hash = 'qweWE' 
-      @short_url = 'http://bit.ly/wesSD'
-      @interface = stub('UrlShortener::Interface', :get => {})
-      @client.stub!(:interface).and_return(@interface)
-    end
-    
-    it "does something" do
+
+    describe "#expand" do
+     before(:each) do
+        @hash = 'qweWE' 
+        @short_url = 'http://bit.ly/wesSD'
+        @end_point = 'http://api.bit.ly/expand'
+        @client.stub!(:end_point).and_return(@end_point)
+      end
+
+      it "should raise IncompleteRequestParameter when key value pair for neither hash nor shortUrl is not present" do
+        lambda {@client.expand(:invalid => 'anyvalue')}.should raise_error(UrlShortener::IncompleteRequestParameter)
+      end
+
+      it "should get the end point" do
+        @client.should_receive(:end_point)
+        @client.expand(:hash => @hash)
+      end
+
+      it "should use the interface to connect to bitly and pass the hash when url hash is used" do
+        @client.should_receive(:interface).with(nil, {:rest_url => @end_point, :hash => 'qweWE'}).and_return(@interface)
+        @client.expand(:hash => @hash)
+      end
+
+      it "should use the interface to connect to bitly and pass the shortUrl when shortUrl is used" do
+        @client.should_receive(:interface).with(nil, {:rest_url => @end_point, :shortUrl => 'http://bit.ly/wesSD'}).and_return(@interface)
+        @client.expand(:shortUrl => @short_url)
+      end
+
+      it "should get the data using interface" do
+        @interface.should_receive(:get)
+        @client.expand(:hash => @hash)
+      end
       
-      @client.expand(@short_url)
+      it "should return the long url of the hash provided" do
+        @interface.should_receive(:get).and_return('qweWE' => {'longUrl' => 'http://www.goog.com'})
+        @client.expand(:hash => @hash).should eql('http://www.goog.com')
+      end
+      
+      it "should return the long url for the shortUrl provided" do
+        @interface.should_receive(:get).and_return('wesSD' => {'longUrl' => 'http://www.goog.com'})
+        @client.expand(:shortUrl => @short_url).should eql('http://www.goog.com')
+      end
+      
     end
   end
   

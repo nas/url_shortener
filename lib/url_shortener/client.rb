@@ -19,6 +19,16 @@ module UrlShortener
       interface(end_point_with_params).get['nodeKeyVal']
     end
     
+    # Provide parameter as a key value pair of existing short url or its hash
+    # e.g. expand :shortUrl => 'http://bit.ly/15DlK' OR :hash => '31IqMl'
+    def expand(option)
+      check_request_parameters(option)
+      /^.*\/(.*)$/.match option[:shortUrl] if option[:shortUrl]
+      request_param = option[:hash] ? option[:hash] : $1
+      result = interface(nil, {:rest_url => end_point('expand')}.merge(option)).get[request_param]
+      return result['longUrl'] if result
+    end
+    
     # If a complex url need to be passed then use end_point_with_params else
     # set first parameter to nil while invoking this method and
     # pass rest_url option e.g.
@@ -46,6 +56,13 @@ module UrlShortener
     end
     
     private
+    
+    def check_request_parameters(option)
+      unless (option[:hash] || option[:shortUrl])
+        raise UrlShortener::IncompleteRequestParameter, "Either hash or the shorUrl is required to complete the operation."
+      end
+      true
+    end
     
     def validated?
       valid_authorize_attribute?
