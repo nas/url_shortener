@@ -2,3 +2,9 @@
 
 * 1 major enhancement:
   * Initial release
+
+=== 0.0.2 2009-11-09
+
+* 1 addition:
+  * adds url expander functionality
+ 
