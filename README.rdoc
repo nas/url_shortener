@@ -17,9 +17,9 @@ To use the url_shortener gem you need a bit.ly login and Api key.
 
 * client = UrlShortener::Client.new authorize
 
-* results = client.shorten('http://www.yahoo.com')
+* results = client.shorten('http://www.yahoo.com') # => Hash containing short url
 
-* results['shortUrl']
+* results['shortUrl'] # => short url string 
 
 OR 
 
@@ -29,13 +29,11 @@ OR
 
 ==To Expand Urls
 
-* result = client.expand(:shortUrl => 'http://bit.ly/1RmnUT')
+* result = client.expand(:shortUrl => 'http://bit.ly/1RmnUT') # => long url string
 
 OR
 
-* result = client.expand(:hash => '2bYgqR')
-
-* result['longUrl']
+* result = client.expand(:hash => '2bYgqR') # => long url string
 
 ==Docs
 
