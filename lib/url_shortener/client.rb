@@ -30,16 +30,16 @@ module UrlShortener
     end
     
     # Provide parameter as a key value pair of existing short url or its hash
-    # e.g. stats :shortUrl => 'http://bit.ly/15DlK' OR :hash => '31IqMl'
+    # e.g. stats :shortUrl => 'http://bit.ly/15DlK' #OR :hash => '31IqMl'
     def stats(option)
       check_request_parameters(option)
-      result = interface(nil, {:rest_url => end_point('stats')}.merge(option)).get
+      interface(nil, {:rest_url => end_point('stats')}.merge(option)).get
     end
     
     # If a complex url need to be passed then use end_point_with_params else
     # set first parameter to nil while invoking this method and
     # pass rest_url option e.g.
-    #  interface(nil, {:rest_url => end_point('expand'), :another_key => 'value'})
+    # interface(nil, {:rest_url => end_point('expand'), :another_key => 'value'})
     def interface(end_point_with_params, options={})
       if end_point_with_params.nil? && options[:rest_url].nil?
         raise "You must provide either the endpoint as the first parameter or set the :rest_url options"

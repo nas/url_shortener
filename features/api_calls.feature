@@ -48,6 +48,7 @@ Feature: REST calls to bit.ly API
 		And "bit.ly" is online
 		When I submit a request to get stats for a short url using the hash "2oV4lu"
 		Then I should get the response from "bit.ly"
+		And the result should have "referrers" and "clicks" keys in the returned hash
 
 	Scenario: Get stats from the short url when correct login and api key is present
 		Given I use "correct" "bit.ly" login name as "bitlyapidemo"
@@ -56,3 +57,4 @@ Feature: REST calls to bit.ly API
 		And "bit.ly" is online
 		When I submit a request to get stats for a short url using the short url "http://bit.ly/6NaDb"
 		Then I should get the response from "bit.ly"
+		And the result should have "referrers" and "clicks" keys in the returned hash

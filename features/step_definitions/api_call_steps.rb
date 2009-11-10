@@ -60,6 +60,10 @@ Then /^the expanded url should be "([^\"]*)"$/ do |expanded_url|
   @result.should eql(expanded_url)
 end
 
+Then /^the result should have "([^\"]*)" and "([^\"]*)" keys in the returned hash$/ do |key1,key2|
+  @result.keys.should include(key1, key2)
+end
+
 private
 
 def client
