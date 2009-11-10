@@ -16,6 +16,14 @@ To use the url_shortener gem you need a bit.ly login and Api key.
 
 ==USAGE
 
+===Quick Start
+
+* Start an irb session
+
+	* require 'rubygems'
+	
+	* require 'url_shortener'
+
 ===To Shorten Urls
 
 * authorize = UrlShortener::Authorize.new 'your_bitly_login', 'your_bitly_api_key'
