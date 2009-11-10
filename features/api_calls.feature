@@ -40,3 +40,19 @@ Feature: REST calls to bit.ly API
 		When I submit a request to expand a short url using the short url "http://bit.ly/6NaDb"
 		Then I should get the response from "bit.ly"
 		And the expanded url should be "http://www.github.com/nas"
+	
+	Scenario: Get stats from the hash when correct login and api key is present
+		Given I use "correct" "bit.ly" login name as "bitlyapidemo"
+		And I use "correct" "bit.ly" api key as "R_0da49e0a9118ff35f52f629d2d71bf07"
+		And I use "correct" credentials
+		And "bit.ly" is online
+		When I submit a request to get stats for a short url using the hash "2oV4lu"
+		Then I should get the response from "bit.ly"
+
+	Scenario: Get stats from the short url when correct login and api key is present
+		Given I use "correct" "bit.ly" login name as "bitlyapidemo"
+		And I use "correct" "bit.ly" api key as "R_0da49e0a9118ff35f52f629d2d71bf07"
+		And I use "correct" credentials
+		And "bit.ly" is online
+		When I submit a request to get stats for a short url using the short url "http://bit.ly/6NaDb"
+		Then I should get the response from "bit.ly"
