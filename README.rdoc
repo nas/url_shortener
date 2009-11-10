@@ -1,6 +1,6 @@
 ==Description
 
-Url Shortener is a Ruby library / gem and API wrapper for bit.ly to shorten the urls.
+Url Shortener is a Ruby library / gem and API wrapper for bit.ly to shorten/expand the urls and retrieve other information about them.
 
 To use the url_shortener gem you need a bit.ly login and Api key.
 
