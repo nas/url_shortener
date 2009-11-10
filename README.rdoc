@@ -27,13 +27,21 @@ OR
 
 * results.each {|result| puts result['shortUrl']}
 
-==To Expand Urls
+===To Expand Urls
 
 * result = client.expand(:shortUrl => 'http://bit.ly/1RmnUT') # => long url string
 
 OR
 
 * result = client.expand(:hash => '2bYgqR') # => long url string
+
+===To get stats
+
+* result = client.stats(:shortUrl => 'http://bit.ly/1RmnUT') # => long url string
+
+OR
+
+* result = client.stats(:hash => '2bYgqR') # => long url string
 
 ==Docs
 
