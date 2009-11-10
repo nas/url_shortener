@@ -8,7 +8,7 @@
 * 1 addition:
   * adds url expander functionality
 
-=== 0.0.2 2009-11-10
+=== 0.0.3 2009-11-10
 
 * 2 additions:
   * adds url stats functionality
