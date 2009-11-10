@@ -9,9 +9,9 @@ To use the url_shortener gem you need a bit.ly login and Api key.
 
 ==INSTALL
 
-gem sources -a http://gemcutter.org
+	gem sources -a http://gemcutter.org
 
-sudo gem install url_shortener
+	sudo gem install url_shortener
 
 
 ==USAGE
