@@ -26,6 +26,14 @@ When /^I submit a request to get stats for a short url using the short url "([^\
   @result = client.stats(:shortUrl => short_url)
 end
 
+When /^I submit a request to get info for a short url using the hash "([^\"]*)"$/ do |hash|
+  @result = client.info(:hash => hash)
+end
+
+When /^I submit a request to get info for a short url using the short url "([^\"]*)"$/ do |short_url|
+  @result = client.info(:shortUrl => short_url)
+end
+
 # ==============
 # = Then Steps =
 # ==============
@@ -62,6 +70,14 @@ end
 
 Then /^the result should have "([^\"]*)" and "([^\"]*)" keys in the returned hash$/ do |key1,key2|
   @result.keys.should include(key1, key2)
+end
+
+Then /^the result should have "([^\"]*)" key in the returned hash$/ do |key|
+  @result.keys.should include(key)
+end
+
+Then /^the result doc hash should have "([^\"]*)", "([^\"]*)", "([^\"]*)", etc keys$/ do |key1, key2, key3|
+  @result['doc'].keys.should include(key1, key2, key3)
 end
 
 private

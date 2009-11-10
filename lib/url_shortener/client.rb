@@ -36,6 +36,11 @@ module UrlShortener
       interface(nil, {:rest_url => end_point('stats')}.merge(option)).get
     end
     
+    def info(option)
+      check_request_parameters(option)
+      interface(nil, {:rest_url => end_point('info')}.merge(option)).get
+    end
+    
     # If a complex url need to be passed then use end_point_with_params else
     # set first parameter to nil while invoking this method and
     # pass rest_url option e.g.

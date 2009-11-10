@@ -43,6 +43,14 @@ OR
 
 * result = client.stats(:hash => '2bYgqR') # => long url string
 
+===To get url info
+
+* result = client.info(:shortUrl => 'http://bit.ly/1RmnUT') # => long url string
+
+OR
+
+* result = client.info(:hash => '2bYgqR') # => long url string
+
 ==Docs
 
 http://rdoc.info/projects/nas/url_shortener

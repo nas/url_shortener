@@ -58,3 +58,23 @@ Feature: REST calls to bit.ly API
 		When I submit a request to get stats for a short url using the short url "http://bit.ly/6NaDb"
 		Then I should get the response from "bit.ly"
 		And the result should have "referrers" and "clicks" keys in the returned hash
+	
+	Scenario: Get information from the hash when correct login and api key is present
+		Given I use "correct" "bit.ly" login name as "bitlyapidemo"
+		And I use "correct" "bit.ly" api key as "R_0da49e0a9118ff35f52f629d2d71bf07"
+		And I use "correct" credentials
+		And "bit.ly" is online
+		When I submit a request to get info for a short url using the hash "2oV4lu"
+		Then I should get the response from "bit.ly"
+		And the result should have "doc" key in the returned hash
+		And the result doc hash should have "longUrl", "shortenedByUser", "htmlTitle", etc keys
+		
+	Scenario: Get information from the short url when correct login and api key is present
+		Given I use "correct" "bit.ly" login name as "bitlyapidemo"
+		And I use "correct" "bit.ly" api key as "R_0da49e0a9118ff35f52f629d2d71bf07"
+		And I use "correct" credentials
+		And "bit.ly" is online
+		When I submit a request to get info for a short url using the short url "http://bit.ly/6NaDb"
+		Then I should get the response from "bit.ly"
+		And the result should have "doc" key in the returned hash
+		And the result doc hash should have "longUrl", "shortenedByUser", "htmlTitle", etc keys
