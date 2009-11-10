@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
                   "features/request_failure.feature",
                   "features/support/env.rb",
                   "features/step_definitions/request_failure_steps.rb",
-                  "features/step_definitions/api_calls_steps.rb"
+                  "features/step_definitions/api_call_steps.rb"
                  ]
   s.platform = Gem::Platform::RUBY 
   s.required_ruby_version = '>=1.8'
