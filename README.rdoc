@@ -37,7 +37,7 @@ OR
 
 ==Docs
 
-http://rdoc.info/projects/nas/yahoo_stock
+http://rdoc.info/projects/nas/url_shortener
 
 ==Tests
 
