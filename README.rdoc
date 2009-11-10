@@ -7,6 +7,13 @@ To use the url_shortener gem you need a bit.ly login and Api key.
 * If you are registered at bit.ly then you already have it.
 * If you are not registered then you can get it easily by registering at bit.ly as they give an api key to every registered user
 
+==INSTALL
+
+gem sources -a http://gemcutter.org
+
+sudo gem install url_shortener
+
+
 ==USAGE
 
 ===To Shorten Urls
