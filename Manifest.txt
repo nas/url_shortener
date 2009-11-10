@@ -10,8 +10,8 @@ spec/spec_helper.rb
 spec/url_shortener/authorize_spec.rb
 spec/url_shortener/client_spec.rb
 spec/url_shortener/interface_spec.rb
-features/connect_to_bitly.feature
-features/short_url.feature
+features/request_failure.feature
+features/api_calls.feature
 features/support/env.rb
-features/step_definitions/connection_error_steps.rb
-features/step_definitions/short_url_steps.rb
+features/step_definitions/api_call_steps.rb
+features/step_definitions/request_failure_steps.rb

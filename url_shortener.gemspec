@@ -1,11 +1,11 @@
 Gem::Specification.new do |s|
   s.name = %q{url_shortener}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Nasir Jamal"]
-  s.date = %q{2009-11-09}
-  s.description = %q{Url Shortener is a Ruby library /gem and API wrapper for bit.ly}
+  s.date = %q{2009-11-10}
+  s.description = %q{Url Shortener is a Ruby library / gem and API wrapper for bit.ly to shorten, expand urls and other APIs.}
   s.email = %q{nas35_in@yahoo.com}
   s.extra_rdoc_files = ["README.rdoc"]
   s.files = ["History.txt",
@@ -22,16 +22,16 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.0}
-  s.summary = %q{Url Shortener is a Ruby library /gem and API wrapper for bit.ly}
+  s.summary = %q{Url Shortener is a Ruby library / gem and API wrapper for bit.ly}
   s.test_files = ["spec/spec_helper.rb",
                   "spec/url_shortener/authorize_spec.rb",
                   "spec/url_shortener/client_spec.rb",
                   "spec/url_shortener/interface_spec.rb",
-                  "features/connect_to_bitly.feature",
-                  "features/short_url.feature",
+                  "features/api_calls.feature",
+                  "features/request_failure.feature",
                   "features/support/env.rb",
-                  "features/step_definitions/connection_error_steps.rb",
-                  "features/step_definitions/short_url_steps.rb"
+                  "features/step_definitions/request_failure_steps.rb",
+                  "features/step_definitions/api_calls_steps.rb"
                  ]
   s.platform = Gem::Platform::RUBY 
   s.required_ruby_version = '>=1.8'
