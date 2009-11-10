@@ -1,4 +1,4 @@
-Feature: Get informative messages
+Feature: When requests fail
 	In order to take appropriate measures
 	As a user
 	I want to be able to get meaningful and appropriate messages when I am not able to connect to bit.ly
