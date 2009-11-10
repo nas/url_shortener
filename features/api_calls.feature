@@ -13,7 +13,17 @@ Feature: REST calls to bit.ly API
 		And the shorten url should be "http://bit.ly/6NaDb"
 		And the hash should be "2oV4lu"
 	
-	Scenario: Expand a hash when correct login and api key is present
+	Scenario: Create multiple short urls when correct login and api key is present
+		Given I use "correct" "bit.ly" login name as "bitlyapidemo"
+		And I use "correct" "bit.ly" api key as "R_0da49e0a9118ff35f52f629d2d71bf07"
+		And I use "correct" credentials
+		And "bit.ly" is online
+		When I submit a request to shorten the urls "http://www.github.com/nas" and "http://www.google.com"
+		Then I should get the response from "bit.ly"
+		And the shorten url should be "http://bit.ly/6NaDb" and "http://bit.ly/8ttn"
+		And the hash values should be "2oV4lu" and "2V6CFi"
+	
+	Scenario: Expand the hash when correct login and api key is present
 		Given I use "correct" "bit.ly" login name as "bitlyapidemo"
 		And I use "correct" "bit.ly" api key as "R_0da49e0a9118ff35f52f629d2d71bf07"
 		And I use "correct" credentials
@@ -22,7 +32,7 @@ Feature: REST calls to bit.ly API
 		Then I should get the response from "bit.ly"
 		And the expanded url should be "http://www.github.com/nas"
 	
-	Scenario: Expand a short url when correct login and api key is present
+	Scenario: Expand the short url when correct login and api key is present
 		Given I use "correct" "bit.ly" login name as "bitlyapidemo"
 		And I use "correct" "bit.ly" api key as "R_0da49e0a9118ff35f52f629d2d71bf07"
 		And I use "correct" credentials
