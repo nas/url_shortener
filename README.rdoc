@@ -29,10 +29,6 @@ OR
 
 ==To Expand Urls
 
-* authorize = UrlShortener::Authorize.new 'your_bitly_login', 'your_bitly_api_key'
-
-* client = UrlShortener::Client.new authorize
-
 * result = client.expand(:shortUrl => 'http://bit.ly/1RmnUT')
 
 OR
@@ -41,12 +37,9 @@ OR
 
 * result['longUrl']
 
-OR 
+==Docs
 
-* results = client.shorten('http://www.yahoo.com', 'http://www.google.com', 'http://github.com')
-
-* results.each {|result| puts result['shortUrl']}
-
+http://rdoc.info/projects/nas/yahoo_stock
 
 ==Tests
 
