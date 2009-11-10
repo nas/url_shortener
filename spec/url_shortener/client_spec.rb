@@ -90,6 +90,7 @@ describe UrlShortener::Client do
       @interface = stub('UrlShortener::Interface', :get => {})
       @client.stub!(:interface).and_return(@interface)
     end
+    
     describe "#shorten" do
       before(:each) do
         @url = 'http://www.domain.com/path?params=value'
@@ -116,6 +117,39 @@ describe UrlShortener::Client do
       end
 
     end
+    
+    describe "#stats" do
+      before(:each) do
+        @hash = 'qweWE' 
+        @short_url = 'http://bit.ly/wesSD'
+        @end_point = 'http://api.bit.ly/stats'
+        @client.stub!(:end_point).and_return(@end_point)
+      end
+      
+      it "should raise IncompleteRequestParameter when key value pair for neither hash nor shortUrl is not present" do
+        lambda {@client.stats(:invalid => 'anyvalue')}.should raise_error(UrlShortener::IncompleteRequestParameter)
+      end
+      
+      it "should get the end point" do
+        @client.should_receive(:end_point).with('stats')
+        @client.stats(:hash => @hash)
+      end
+      
+      it "should use the interface to connect and pass the hash when url hash is used" do
+        @client.should_receive(:interface).with(nil, {:rest_url => @end_point, :hash => 'qweWE'}).and_return(@interface)
+        @client.stats(:hash => @hash)
+      end
+
+      it "should use the interface to connect and pass the shortUrl when shortUrl is used" do
+        @client.should_receive(:interface).with(nil, {:rest_url => @end_point, :shortUrl => 'http://bit.ly/wesSD'}).and_return(@interface)
+        @client.stats(:shortUrl => @short_url)
+      end
+      
+      it "should get the data using interface" do
+        @interface.should_receive(:get)
+        @client.stats(:hash => @hash)
+      end
+    end
 
     describe "#expand" do
      before(:each) do
@@ -130,7 +164,7 @@ describe UrlShortener::Client do
       end
 
       it "should get the end point" do
-        @client.should_receive(:end_point)
+        @client.should_receive(:end_point).with('expand')
         @client.expand(:hash => @hash)
       end
 
