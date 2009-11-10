@@ -7,16 +7,16 @@ When /^I submit a request to shorten the url "([^\"]*)"$/ do |url|
   @result = client.shorten(url)
 end
 
-When /^I submit a request to expand a short url using hash$/ do
+When /^I submit a request to expand a short url using the hash "([^\"]*)"$/ do |hash|
   authorize = UrlShortener::Authorize.new('bitlyapidemo', 'R_0da49e0a9118ff35f52f629d2d71bf07')
   client = UrlShortener::Client.new(authorize)
-  @result = client.expand(:hash => 'DyE5')
+  @result = client.expand(:hash => hash)
 end
 
-When /^I submit a request to expand a short url using short url$/ do
+When /^I submit a request to expand a short url using the short url "([^\"]*)"$/ do |short_url|
   authorize = UrlShortener::Authorize.new('bitlyapidemo', 'R_0da49e0a9118ff35f52f629d2d71bf07')
   client = UrlShortener::Client.new(authorize)
-  @result = client.expand(:shortUrl => 'http://bit.ly/1K8JOn')
+  @result = client.expand(:shortUrl => short_url)
 end
 
 # ==============
@@ -34,8 +34,8 @@ Then /^the hash should be "([^\"]*)"$/ do |hash|
   @result['hash'].should eql(hash)
 end
 
-Then /^the expanded url should be "([^\"]*)"$/ do |arg1|
-  @result.should eql('http://www.google.co.uk/')
+Then /^the expanded url should be "([^\"]*)"$/ do |expanded_url|
+  @result.should eql(expanded_url)
 end
 
 
