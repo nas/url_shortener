@@ -115,6 +115,10 @@ describe UrlShortener::Client do
         @interface.should_receive(:get)
         @client.shorten(@url)
       end
+      
+      it "should return the UrlShortener::Response::Shorten object" do
+        @client.shorten(@url).should be_instance_of(UrlShortener::Response::Shorten)
+      end
 
     end
     
@@ -218,12 +222,12 @@ describe UrlShortener::Client do
       
       it "should return the long url of the hash provided" do
         @interface.should_receive(:get).and_return('qweWE' => {'longUrl' => 'http://www.goog.com'})
-        @client.expand(:hash => @hash).should eql('http://www.goog.com')
+        @client.expand(:hash => @hash).result['qweWE'].values.should include('http://www.goog.com')
       end
       
       it "should return the long url for the shortUrl provided" do
         @interface.should_receive(:get).and_return('wesSD' => {'longUrl' => 'http://www.goog.com'})
-        @client.expand(:shortUrl => @short_url).should eql('http://www.goog.com')
+        @client.expand(:shortUrl => @short_url).result['wesSD'].values.should include('http://www.goog.com')
       end
       
     end

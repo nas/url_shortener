@@ -16,29 +16,30 @@ module UrlShortener
       # duplicate keys in a hash hence this solution
       urls.collect!{|url| CGI.escape(url)}
       end_point_with_params = "#{end_point('shorten')}?longUrl=#{urls.join('&longUrl=')}"
-      interface(end_point_with_params).get['nodeKeyVal']
+      response = interface(end_point_with_params).get
+      UrlShortener::Response::Shorten.new(response)
     end
     
     # Provide parameter as a key value pair of existing short url or its hash
     # e.g. expand :shortUrl => 'http://bit.ly/15DlK' OR :hash => '31IqMl'
     def expand(option)
       check_request_parameters(option)
-      /^.*\/(.*)$/.match option[:shortUrl] if option[:shortUrl]
-      request_param = option[:hash] ? option[:hash] : $1
-      result = interface(nil, {:rest_url => end_point('expand')}.merge(option)).get[request_param]
-      return result['longUrl'] if result
+      response = interface(nil, endpoint_with_options('expand',option)).get
+      UrlShortener::Response.new(response)
     end
     
     # Provide parameter as a key value pair of existing short url or its hash
     # e.g. stats :shortUrl => 'http://bit.ly/15DlK' #OR :hash => '31IqMl'
     def stats(option)
       check_request_parameters(option)
-      interface(nil, {:rest_url => end_point('stats')}.merge(option)).get
+      response = interface(nil, endpoint_with_options('stats',option)).get
+      UrlShortener::Response.new(response)
     end
     
     def info(option)
       check_request_parameters(option)
-      interface(nil, {:rest_url => end_point('info')}.merge(option)).get
+      response = interface(nil, endpoint_with_options('info',option)).get
+      UrlShortener::Response.new(response)
     end
     
     # If a complex url need to be passed then use end_point_with_params else
@@ -68,6 +69,10 @@ module UrlShortener
     end
     
     private
+    
+    def endpoint_with_options(resource, option)
+      {:rest_url => end_point(resource)}.merge(option)
+    end
     
     def check_request_parameters(option)
       unless (option[:hash] || option[:shortUrl])
