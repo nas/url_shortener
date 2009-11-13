@@ -8,12 +8,14 @@ lib/url_shortener/error.rb
 lib/url_shortener/interface.rb
 lib/url_shortener/response.rb
 lib/url_shortener/response/shorten.rb
+lib/url_shortener/response/expand.rb
 spec/spec_helper.rb
 spec/url_shortener/authorize_spec.rb
 spec/url_shortener/client_spec.rb
 spec/url_shortener/interface_spec.rb
 spec/url_shortener/response_spec.rb
 spec/url_shortener/response/shorten_spec.rb
+spec/url_shortener/response/expand_spec.rb
 features/request_failure.feature
 features/api_calls.feature
 features/support/env.rb

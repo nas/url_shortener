@@ -20,51 +20,64 @@ To use the url_shortener gem you need a bit.ly login and Api key.
 
 * Start an irb session
 
-	* require 'rubygems'
+	require 'rubygems'
 	
-	* require 'url_shortener'
+	require 'url_shortener'
 
 ===To Shorten Urls
 
-* authorize = UrlShortener::Authorize.new 'your_bitly_login', 'your_bitly_api_key'
+	authorize = UrlShortener::Authorize.new 'your_bitly_login', 'your_bitly_api_key'
 
-* For example; authorize = UrlShortener::Authorize.new 'bitlyapidemo', 'R_0da49e0a9118ff35f52f629d2d71bf07'
+	For example; authorize = UrlShortener::Authorize.new 'bitlyapidemo', 'R_0da49e0a9118ff35f52f629d2d71bf07'
 
-* client = UrlShortener::Client.new authorize
+	client = UrlShortener::Client.new authorize
 
-* results = client.shorten('http://www.yahoo.com') # => Hash containing short url
+	shorten = client.shorten('http://www.yahoo.com') # => UrlShortener::Response::Shorten object
 
-* results['shortUrl'] # => short url string 
+	shorten.result # => returns a hash of all data returned from bitly
 
-OR 
+	shorten.urls # => Only returns the short urls
+	
+	look for more convenience methods in the UrlShortener::Respone::Shorten class
+  
 
-* results = client.shorten('http://www.yahoo.com', 'http://www.google.com', 'http://github.com')
+	OR 
 
-* results.each {|result| puts result['shortUrl']}
+	shorten = client.shorten('http://www.yahoo.com', 'http://www.google.com', 'http://github.com')
+
+	shorten.result
+
+	shorten.urls
 
 ===To Expand Urls
 
-* result = client.expand(:shortUrl => 'http://bit.ly/1RmnUT') # => long url string
+	expand = client.expand(:shortUrl => 'http://bit.ly/1RmnUT') # => UrlShortener::Response::Expand object
+	
+	OR
 
-OR
-
-* result = client.expand(:hash => '2bYgqR') # => long url string
+	expand = client.expand(:hash => '1RmnUT')
+	expand.result # => returns a hash of all data returned from bitly
+	expand.url # => returns a long url string
 
 ===To get stats
 
-* result = client.stats(:shortUrl => 'http://bit.ly/1RmnUT') # => long url string
+	stats = client.stats(:shortUrl => 'http://bit.ly/1RmnUT')  # => UrlShortener::Response object
+	
+	OR
 
-OR
-
-* result = client.stats(:hash => '2bYgqR') # => long url string
+	stats = client.stats(:hash => '1RmnUT') # => UrlShortener::Response object
+	stats.result # => returns a hash of all data returned from bitly
+	#TODO: ADD convenience methods for stats
 
 ===To get url info
 
-* result = client.info(:shortUrl => 'http://bit.ly/1RmnUT') # => long url string
+	info = client.info(:shortUrl => 'http://bit.ly/1RmnUT') # => UrlShortener::Response object
+	
+	OR
 
-OR
-
-* result = client.info(:hash => '2bYgqR') # => long url string
+	info = client.info(:hash => '1RmnUT') # => UrlShortener::Response object
+	info.result # => returns a hash of all data returned from bitly
+	#TODO: ADD convenience methods for info api call
 
 ==Docs
 
