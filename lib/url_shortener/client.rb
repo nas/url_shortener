@@ -25,7 +25,7 @@ module UrlShortener
     def expand(option)
       check_request_parameters(option)
       response = interface(nil, endpoint_with_options('expand',option)).get
-      UrlShortener::Response.new(response)
+      UrlShortener::Response::Expand.new(response)
     end
     
     # Provide parameter as a key value pair of existing short url or its hash

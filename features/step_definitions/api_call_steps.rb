@@ -59,7 +59,7 @@ Then /^the hash should be "([^\"]*)"$/ do |hash|
 end
 
 Then /^the expanded url should be "([^\"]*)" for "([^\"]*)"$/ do |expanded_url, request_parameter|
-  @response.result[request_parameter]['longUrl'].should eql(expanded_url)
+  @response.url.should eql(expanded_url)
 end
 
 Then /^the result should have "([^\"]*)" and "([^\"]*)" keys in the returned hash$/ do |key1,key2|

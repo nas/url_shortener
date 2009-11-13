@@ -230,6 +230,10 @@ describe UrlShortener::Client do
         @client.expand(:shortUrl => @short_url).result['wesSD'].values.should include('http://www.goog.com')
       end
       
+      it "should return the UrlShortener::Response::Expand object" do
+        @client.expand(:hash => @hash).should be_instance_of(UrlShortener::Response::Expand)
+      end
+      
     end
   end
   
