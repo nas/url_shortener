@@ -16,8 +16,8 @@ Gem::Specification.new do |s|
              "lib/url_shortener/client.rb",
              "lib/url_shortener/error.rb",
              "lib/url_shortener/interface.rb",
-             "lib/url_shortener/response.rb"
-             "lib/url_shortener/response/shorten.rb"
+             "lib/url_shortener/response.rb",
+             "lib/url_shortener/response/shorten.rb",
              "lib/url_shortener/response/expand.rb"
              ]
   s.has_rdoc = true
