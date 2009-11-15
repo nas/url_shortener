@@ -38,7 +38,7 @@ To use the url_shortener gem you need a bit.ly login and Api key.
 
 	shorten.urls # => Only returns the short urls
 	
-	look for more convenience methods in the UrlShortener::Respone::Shorten class
+	look for more convenience methods in the UrlShortener::Response::Shorten class
   
 
 	OR 

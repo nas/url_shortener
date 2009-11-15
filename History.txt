@@ -13,3 +13,18 @@
 * 2 additions:
   * adds url stats functionality
   * adds url info functionality
+
+=== 0.0.4 2009-11-15
+
+* 4 additions:
+	* adds UrlShortener::Response
+	* adds UrlShortener::Response::Shorten
+	* adds UrlShortener::Response::Expand
+	* adds some convenience methods to the returned results for shortening and expanding urls
+
+* 3 changes:
+  * api call method UrlShortener::Client#shorten now returns a UrlShortener::Response::Shorten object
+  * api call method UrlShortener::Client#expand now returns a UrlShortener::Response::Expand object
+  * other api call methods now return a UrlShortener::Response object
+  These changes are introduced to return the api call results in a flexible manner and provide more flexibility for manipulating result output
+

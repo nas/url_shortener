@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name = %q{url_shortener}
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Nasir Jamal"]
-  s.date = %q{2009-11-10}
+  s.date = %q{2009-11-15}
   s.description = %q{Url Shortener is a Ruby library / gem and API wrapper for bit.ly to shorten/expand the urls and retrieve other information about them.}
   s.email = %q{nas35_in@yahoo.com}
   s.extra_rdoc_files = ["README.rdoc"]
