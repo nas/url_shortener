@@ -67,7 +67,6 @@ To use the url_shortener gem you need a bit.ly login and Api key.
 
 	stats = client.stats(:hash => '1RmnUT') # => UrlShortener::Response object
 	stats.result # => returns a hash of all data returned from bitly
-	#TODO: ADD convenience methods for stats
 
 ===To get url info
 
