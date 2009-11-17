@@ -28,3 +28,13 @@
   * other api call methods now return a UrlShortener::Response object
   These changes are introduced to return the api call results in a flexible manner and provide more flexibility for manipulating result output
 
+=== 0.0.5 2009-11-17
+
+* 3 additions:
+	* adds Hashie for convert hashe keys to method calls
+	* adds UrlShortener::Response::Stats
+	* adds some convenience methods to the returned results for stats
+
+* 1 changes:
+  * api call method UrlShortener::Client#stats now returns a UrlShortener::Response::Stats object
+
