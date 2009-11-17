@@ -33,7 +33,7 @@ module UrlShortener
     def stats(option)
       check_request_parameters(option)
       response = interface(nil, endpoint_with_options('stats',option)).get
-      UrlShortener::Response.new(response)
+      UrlShortener::Response::Stats.new(response)
     end
     
     def info(option)

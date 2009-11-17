@@ -153,6 +153,10 @@ describe UrlShortener::Client do
         @interface.should_receive(:get)
         @client.stats(:hash => @hash)
       end
+      
+      it "should return the UrlShortener::Response::Stats object" do
+        @client.stats(:hash => @hash).should be_instance_of(UrlShortener::Response::Stats)
+      end
     end
     
     describe "#info" do
