@@ -2,62 +2,6 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe UrlShortener::Response::Stats do
   
-  describe "#clicks" do
-    before(:each) do
-      @hashie = stub('Hashie::Mash')
-      @response = {:referrers => {:key => :val}, :clicks => '23'}
-      @stats = UrlShortener::Response::Stats.new(@response)
-      @stats.stub!(:attributes).and_return(@hashie)
-      @hashie.stub!(:clicks)
-    end
-    
-    it "should get the hash attributes" do
-      @stats.should_receive(:attributes).and_return(@hashie)
-      @stats.clicks
-    end
-    
-    it "should get the clicks from the hash attributes" do
-      @hashie.should_receive(:clicks)
-      @stats.clicks
-    end
-    
-    it "should return nil when response is empty" do
-      response = {}
-      @stats = UrlShortener::Response::Stats.new(response)
-      @stats.clicks.should eql(nil)
-    end
-  end
-  
-  describe "#user_clicks" do
-    before(:each) do
-      @hashie = stub('Hashie::Mash')
-      @response = {:referrers => {:key => :val}, :clicks => '23', :userClicks => '233'}
-      @stats = UrlShortener::Response::Stats.new(@response)
-      @stats.stub!(:attributes).and_return(@hashie)
-      @hashie.stub!(:userClicks).and_return('233')
-    end
-    
-    it "should get the hash attributes" do
-      @stats.should_receive(:attributes).and_return(@hashie)
-      @stats.user_clicks
-    end
-    
-    it "should get the user clicks from the hash attributes" do
-      @hashie.should_receive(:userClicks)
-      @stats.user_clicks
-    end
-    
-    it "should return userClicks" do
-      @stats.user_clicks.should eql('233')
-    end
-    
-    it "should return nil when response is empty" do
-      response = {}
-      @stats = UrlShortener::Response::Stats.new(response)
-      @stats.user_clicks.should eql(nil)
-    end
-  end
-  
   describe "#referrers" do
     before(:each) do
       @response = {:referrers => {:nodeKeyVal => {:nodeKey => 'val'}}}

@@ -5,12 +5,10 @@ module UrlShortener
       super
     end
     
-    def clicks
-      attributes.clicks
-    end
-    
-    def user_clicks
-      attributes.userClicks
+    # Just to override the hash method provided by hashie
+    # that adds some other hash value
+    def hash
+      result['hash']
     end
     
     def referrers
