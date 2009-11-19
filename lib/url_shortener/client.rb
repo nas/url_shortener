@@ -39,7 +39,7 @@ module UrlShortener
     def info(option)
       check_request_parameters(option)
       response = interface(nil, endpoint_with_options('info',option)).get
-      UrlShortener::Response.new(response)
+      UrlShortener::Response::Info.new(response)
     end
     
     # If a complex url need to be passed then use end_point_with_params else
