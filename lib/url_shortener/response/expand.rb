@@ -7,21 +7,16 @@ module UrlShortener
     end
     
     def url
-      return unless result_present?
-      return unless key_present?
-      url_hash = result.keys.first
-      result[url_hash]['longUrl']
+      long_url
     end
     
     private
     
-    def result_present?
-      result && !result.empty?
-    end
-    
-    def key_present?
-      result_present?
-      result.keys && !result.keys.empty?
+    def base_element
+      return unless attributes
+      return unless attributes.first
+      return unless attributes.first.is_a?(Array)
+      attributes.first.last
     end
   end
   
