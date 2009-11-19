@@ -22,6 +22,8 @@ module UrlShortener
       result['nodeKeyVal'].collect{|res| res['hash']}
     end
     
+    alias :hash :hashes
+    
     def hashes_with_long_url_keys
       raise_if_no_result
       return_single_or_mutiple_hash_values('hash')
@@ -51,5 +53,10 @@ module UrlShortener
         raise UrlShortener::NoResult, "Empty Result set."
       end
     end
+    
+    def base_element
+      attributes.nodeKeyVal
+    end
+    
   end
 end
