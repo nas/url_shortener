@@ -19,7 +19,8 @@ Gem::Specification.new do |s|
              "lib/url_shortener/response.rb",
              "lib/url_shortener/response/shorten.rb",
              "lib/url_shortener/response/expand.rb",
-             "lib/url_shortener/response/stats.rb"
+             "lib/url_shortener/response/stats.rb",
+             "lib/url_shortener/response/info.rb"
              ]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/nas/url_shortener}
@@ -35,6 +36,7 @@ Gem::Specification.new do |s|
                   "spec/url_shortener/response/shorten_spec.rb",
                   "spec/url_shortener/response/expand_spec.rb",
                   "spec/url_shortener/response/stats_spec.rb",
+                  "spec/url_shortener/response/info_spec.rb",
                   "features/api_calls.feature",
                   "features/request_failure.feature",
                   "features/support/env.rb",
