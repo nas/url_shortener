@@ -38,3 +38,15 @@
 * 1 changes:
   * api call method UrlShortener::Client#stats now returns a UrlShortener::Response::Stats object
 
+=== 0.0.6 2009-11-26
+
+* 3 additions:
+	* adds UrlShortener::Response::Info
+	* adds convenience methods to the returned results for url info
+	* adds method_missing to UrlShortener::Response to use any xml result element as a method call
+	* the methods don't have to be camelized as returned by bitly, they can be underscored as well 
+	(for more info check http://nasir.wordpress.com/2009/11/26/url-shortener-gem-bitly-api-wrapper-in-ruby)
+
+* 1 changes:
+  * api call method UrlShortener::Client#info now returns a UrlShortener::Response::Info object
+
