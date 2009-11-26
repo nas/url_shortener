@@ -1,5 +1,7 @@
 ==Description
 
+  Tutorial: http://nasir.wordpress.com/2009/11/26/url-shortener-gem-bitly-api-wrapper-in-ruby/
+
 Url Shortener is a Ruby library / gem and API wrapper for bit.ly to shorten/expand the urls and retrieve other information about them.
 
 To use the url_shortener gem you need a bit.ly login and Api key.
@@ -48,34 +50,6 @@ To use the url_shortener gem you need a bit.ly login and Api key.
 	shorten.result
 
 	shorten.urls
-
-===To Expand Urls
-
-	expand = client.expand(:shortUrl => 'http://bit.ly/1RmnUT') # => UrlShortener::Response::Expand object
-	
-	OR
-
-	expand = client.expand(:hash => '1RmnUT')
-	expand.result # => returns a hash of all data returned from bitly
-	expand.url # => returns a long url string
-
-===To get stats
-
-	stats = client.stats(:shortUrl => 'http://bit.ly/1RmnUT')  # => UrlShortener::Response object
-	
-	OR
-
-	stats = client.stats(:hash => '1RmnUT') # => UrlShortener::Response object
-	stats.result # => returns a hash of all data returned from bitly
-
-===To get url info
-
-	info = client.info(:shortUrl => 'http://bit.ly/1RmnUT') # => UrlShortener::Response object
-	
-	OR
-
-	info = client.info(:hash => '1RmnUT') # => UrlShortener::Response object
-	info.result # => returns a hash of all data returned from bitly
 
 ==Docs
 
