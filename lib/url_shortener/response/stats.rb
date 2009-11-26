@@ -1,4 +1,46 @@
 module UrlShortener
+  
+  # Provides methods to access stats data returned by bitly for a short url
+  # Apart from the obvious methods provided below such as :
+  #   * hash
+  #   * referrers
+  #   * user_referrers
+  # the value of any xml element can be accessed using their element names
+  # like clicks
+  
+  # e.g. stats response xml
+  # <bitly>
+  #   <errorCode>0</errorCode>
+  #   <errorMessage/>
+  #   <results>
+  #     <referrers>
+  #       <nodeKeyVal>
+  #         <direct>818</direct>
+  #         <nodeKey></nodeKey>
+  #       </nodeKeyVal>
+  #       <nodeKeyVal>
+  #         <nodeKey>www.exalead.com</nodeKey>
+  #         <nodeKeyVal>
+  #           <nodeValue>1</nodeValue>
+  #           <nodeKey>/</nodeKey>
+  #         </nodeKeyVal>
+  #       </nodeKeyVal>
+  #       <nodeKeyVal>
+  #       <nodeKeyVal>
+  #         <nodeValue>1</nodeValue>
+  #         <nodeKey></nodeKey>
+  #       </nodeKeyVal>
+  #       <nodeKey>www.tongs.org.uk</nodeKey>
+  #     </nodeKeyVal>
+  #     REST OF THE ELEMENTS SKIPPED .......
+  #       </referrers>
+  #       <hash>1RmnUT</hash>
+  #     <clicks>2343</clicks>
+  #   </results>
+  #   <statusCode>OK</statusCode>
+  # </bitly>
+  
+  
   class Response::Stats < UrlShortener::Response
     
     def initialize(response)

@@ -1,5 +1,17 @@
 module UrlShortener
   
+  # e.g. bitly response
+  # <bitly>
+  #   <errorCode>0</errorCode>
+  #   <errorMessage></errorMessage>
+  #   <results>
+  #     <31IqMl>
+  #       <longUrl>http://cnn.com/</longUrl>
+  #     </31IqMl>
+  #   </results>
+  #   <statusCode>OK</statusCode>
+  # </bitly>
+  
   class Response::Expand < UrlShortener::Response
     
     def initialize(response)

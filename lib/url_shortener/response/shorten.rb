@@ -1,4 +1,23 @@
 module UrlShortener
+  
+  # Provides methods to easily access data from the response returned by bitly when shortening a url.
+  # Can return multiple or single short urls
+  # e.g. bitly response
+  # <bitly>
+  #   <errorCode>0</errorCode>
+  #   <errorMessage/>
+  #   <results>
+  #     <nodeKeyVal>
+  #       <userHash>15DlK</userHash>
+  #       <shortKeywordUrl/>
+  #       <hash>31IqMl</hash>
+  #       <nodeKey>http://cnn.com</nodeKey>
+  #       <shortUrl>http://bit.ly/15DlK</shortUrl>
+  #     </nodeKeyVal>
+  #   </results>
+  #   <statusCode>OK</statusCode>
+  # </bitly>
+  
   class Response::Shorten < UrlShortener::Response
     
     def initialize(response)
