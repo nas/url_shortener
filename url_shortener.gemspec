@@ -50,14 +50,14 @@ Gem::Specification.new do |s|
     s.specification_version = 2
     
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<httparty>, ["~> 0.13.7"])
-      s.add_runtime_dependency(%q<hashie>, ["~> 1.2.0"])
+      s.add_runtime_dependency(%q<httparty>, ["~> 0.16.2"])
+      s.add_runtime_dependency(%q<hashie>, ["~> 3.0"])
     else
-      s.add_dependency(%q<httparty>, ["~> 0.13.7"])
-      s.add_dependency(%q<hashie>, ["~> 1.2.0"])
+      s.add_dependency(%q<httparty>, ["~> 0.16.2"])
+      s.add_dependency(%q<hashie>, ["~> 3.0"])
     end
   else
-    s.add_dependency(%q<httparty>, ["~> 0.13.7"])
-    s.add_dependency(%q<hashie>, ["~> 1.2.0"])
+    s.add_dependency(%q<httparty>, ["~> 0.16.2"])
+    s.add_dependency(%q<hashie>, ["~> 3.0"])
   end
 end

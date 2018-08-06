@@ -33,7 +33,7 @@ module UrlShortener
     
     def result?(result)
       return false unless result
-      return false unless (result.is_a?(Hash) && result['bitly'])
+      return false unless ((result.is_a?(Hash) || result.is_a?(HTTParty::Response)) && result['bitly'])
       return false if result['bitly'].empty?
       true
     end
