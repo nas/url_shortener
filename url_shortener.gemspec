@@ -44,7 +44,7 @@ Gem::Specification.new do |s|
                   "features/step_definitions/api_call_steps.rb"
                  ]
   s.platform = Gem::Platform::RUBY 
-  s.required_ruby_version = '>=1.8'
+  s.required_ruby_version = '>=2.3'
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 2
@@ -57,7 +57,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<hashie>, [">= 3.0", "< 5.0"])
     end
   else
-    s.add_dependency(%q<httparty>, ["~> 0.16.2"])
+    s.add_dependency(%q<httparty>, ["~> 0.21.0"])
     s.add_dependency(%q<hashie>, [">= 3.0", "< 5.0"])
   end
 end
